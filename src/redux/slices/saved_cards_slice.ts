@@ -4,10 +4,18 @@ import { ApiCardDataInteface, CardDataInteface } from '../../types'
 
 export interface SavedCardsInterface {
   savedCards: CardDataInteface[]
+  isLoading: boolean
+  isSucces: boolean
+  isError: boolean
+  textError: string
 }
 
 const initialState: SavedCardsInterface = {
   savedCards: [],
+  isLoading: false,
+  isSucces: false,
+  isError: false,
+  textError: '',
 }
 
 const savedCardsSlice = createSlice({
@@ -52,10 +60,30 @@ const savedCardsSlice = createSlice({
       state.savedCards = newState
       localStorage.setItem('savedCards', JSON.stringify(newState))
     },
+    setIsLoading: (state, action: PayloadAction<{ state: boolean }>) => {
+      state.isLoading = action.payload.state
+    },
+    setIsSucces: (state, action: PayloadAction<{ state: boolean }>) => {
+      state.isSucces = action.payload.state
+    },
+    setIsError: (state, action: PayloadAction<{ state: boolean }>) => {
+      state.isError = action.payload.state
+    },
+    setTextError: (state, action: PayloadAction<{ err: string }>) => {
+      state.textError = action.payload.err
+    },
   },
 })
 
-export const { deleteCard, setInitialCards, setSavedCards, toggleCardLike } =
-  savedCardsSlice.actions
+export const {
+  deleteCard,
+  setInitialCards,
+  setSavedCards,
+  toggleCardLike,
+  setIsError,
+  setIsLoading,
+  setIsSucces,
+  setTextError,
+} = savedCardsSlice.actions
 
 export default savedCardsSlice.reducer

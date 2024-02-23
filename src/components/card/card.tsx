@@ -10,6 +10,7 @@ import {
   deleteCard,
   toggleCardLike,
 } from '../../redux/slices/saved_cards_slice'
+import { useNavigate } from 'react-router-dom'
 
 interface CardInterface {
   cardData: CardDataInteface
@@ -18,7 +19,10 @@ interface CardInterface {
 const Card: FC<CardInterface> = ({ cardData }) => {
   const { img, isLiked, name, id } = cardData
 
+  const navigate = useNavigate()
+
   function handleClick() {
+    navigate(`/${id}`)
     //onCardClick(cardData)
   }
 

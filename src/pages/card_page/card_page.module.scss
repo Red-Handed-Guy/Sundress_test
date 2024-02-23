@@ -1,0 +1,43 @@
+@import '../../styles/reset.scss';
+@import '../../styles/const.scss';
+
+.container {
+  margin-top: 40px;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 30px;
+}
+
+.title {
+  @include reset-text;
+}
+
+.back_link {
+  @include reset-link;
+  background-color: $medium-gray;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 10px;
+  align-self: flex-start;
+  color: $black;
+  font-size: 20px;
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.image {
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+  height: 270px;
+}
+
+.text {
+  @include reset-text;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: justify;
+}

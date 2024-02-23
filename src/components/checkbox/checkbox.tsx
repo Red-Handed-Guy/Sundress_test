@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import styles from './checkbox.module.scss'
+import HeartSvgBlack from '../../image/like_black.svg'
 
 interface Checkbox {
   handleToggleCheckbox: () => void
@@ -19,7 +20,7 @@ const Checkbox: FC<Checkbox> = ({ handleToggleCheckbox, searchCheckbox }) => {
 
         <span className={styles.search_form__slider}></span>
       </label>
-      <p className={styles.search_form__switch_text}>Liked</p>
+      <HeartSvgBlack />
     </div>
   )
 }

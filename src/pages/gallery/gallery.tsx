@@ -1,13 +1,15 @@
 import { FC, useState } from 'react'
 import styles from './gallery.module.scss'
-import Card from '../card/card'
+import Card from '../../components/card/card'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import Checkbox from '../checkbox/checkbox'
-import SubmitButton from '../submit_button/submit_button'
+import Checkbox from '../../components/checkbox/checkbox'
+import SubmitButton from '../../components/submit_button/submit_button'
 import { getData } from '../../api/api'
+import Preloader from '../../components/preloader/preloader'
 
 const Gallery: FC = () => {
   const savedCards = useAppSelector(state => state.savedCardsSlice.savedCards)
+  const savedCardsState = useAppSelector(state => state.savedCardsSlice)
   const [searchCheckbox, setSearchCheckbox] = useState<boolean>(false)
   const dispatch = useAppDispatch()
 
@@ -34,11 +36,17 @@ const Gallery: FC = () => {
         handleToggleCheckbox={handleToggleCheckbox}
         searchCheckbox={searchCheckbox}
       />
-      <div className={styles.gallery}>
-        {savedCardsFiltered?.map(card => {
-          return <Card cardData={card} key={card.id} />
-        })}
-      </div>
+      {savedCardsState.isLoading && <Preloader />}
+      {savedCardsState.isError && (
+        <p style={{ textAlign: 'center' }}>{savedCardsState.textError}</p>
+      )}
+      {savedCardsState.isSucces && (
+        <div className={styles.gallery}>
+          {savedCardsFiltered?.map(card => {
+            return <Card cardData={card} key={card.id} />
+          })}
+        </div>
+      )}
     </section>
   )
 }

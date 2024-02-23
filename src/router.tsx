@@ -1,15 +1,20 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createHashRouter } from 'react-router-dom'
 import App from './components/app/app'
-import Gallery from './components/gallery/gallery'
+import Gallery from './pages/gallery/gallery'
+import CardPage from './pages/card_page/card_page'
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
-    path: '/Sundress_test/',
+    path: '/',
     element: <App />,
     children: [
       {
         path: '',
         element: <Gallery />,
+      },
+      {
+        path: ':card',
+        element: <CardPage />,
       },
     ],
   },
