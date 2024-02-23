@@ -1,0 +1,33 @@
+@import '../../styles/const.scss';
+@import '../../styles/reset.scss';
+
+.button {
+  @include reset-button;
+  background-color: $green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+  border-radius: 10px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  &:active {
+    background-color: $dark-gray;
+  }
+  @media (width > 768px) {
+    &:hover {
+      border: 1px solid $black;
+    }
+  }
+}
+
+.button_disabled {
+  background-color: $dark-gray;
+}
+
+.button_text {
+  @include reset-text;
+  color: $white;
+  font-size: 18px;
+}
