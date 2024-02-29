@@ -13,9 +13,9 @@ const CardPage: FC = () => {
   )
 
   useEffect(() => {
-    const card = savedCards.filter(card => card.id === +params.card)
-    if (card.length === 1) {
-      setSelectedCard(card[0])
+    const card = savedCards.find(card => card.id === +params.card)
+    if (card) {
+      setSelectedCard(card)
     }
   }, [params.card, savedCards])
 
